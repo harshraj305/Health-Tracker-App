@@ -12,6 +12,26 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
+String greetings() {
+  String greetText = "";
+  // var presentHour = TimeOfDay.now().hour.toInt();
+  var presentHour = DateTime.now().hour.toInt();
+  if (presentHour >= 4 && presentHour <= 12) {
+    greetText = 'Morning';
+  }
+  else if (presentHour >= 13 && presentHour <= 16) {
+    greetText = 'Afternoon';
+  }
+  else if (presentHour >= 17 && presentHour <= 22) {
+    greetText = 'Evening';
+  }
+  else {
+    greetText = 'Night';
+  }
+
+  return greetText;
+}
+
 class _DashboardState extends State<Dashboard> {
   Color bg = Colors.white;
   Color col = const Color.fromARGB(203, 87, 14, 190);
@@ -289,7 +309,7 @@ class _DashboardState extends State<Dashboard> {
                         const SizedBox(
                           width: 28,
                         ),
-                        Text('Good $greet,',
+                        Text('Good ${greetings()},',
                             style: TextStyle(color: bg, fontSize: 30)),
                       ],
                     ),
